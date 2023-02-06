@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import DarkModeToggle from './components/darkModeToggle';
+
 
 interface Todo {
   id: number;
@@ -28,8 +30,9 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-5">
-      <h1 className="text-2xl font-bold mb-5 text-center mx-80 bg-gradient-to-r from-blue-500 to-violet-500 rounded-lg">Todo List</h1>
+    <div className="w-full h-screen mx-auto p-5 dark:bg-gray-500 ">
+      <DarkModeToggle />
+      <h1 className="text-2xl font-bold mb-5 p-2 text-center mx-auto w-fit bg-gradient-to-r from-blue-500 to-violet-600 rounded-lg break-words dark:text-white dark:from-indigo-700 dark:to-violet-700">RememberMe</h1>
       <form onSubmit={handleSubmit} className='text-center'>
         <div className="mb-5">
           <input
@@ -49,23 +52,23 @@ const App: React.FC = () => {
             <option value="green">Green</option>
           </select>
           <button
-            className="bg-blue-500 text-white p-2 rounded-lg ml-5 hover:bg-blue-400 font-bold"
+            className="bg-blue-500 text-black p-2 rounded-lg ml-5 hover:bg-blue-400 font-bold dark:text-white dark:bg-indigo-700"
             type="submit"
           > 
           Add</button>
         </div>
       </form>
-            <ul className='list-none'>
+      <ul className='list-none'>
                 {
                     todos.map((todo) => (
                         <li
                         key={todo.id}
-                        className="bg-white p-5 rounded-lg shadow mb-5 leading-0 border-l-2 w-1/2 m-auto"
+                        className="bg-white p-5 rounded-lg shadow mb-5 leading-0 border-l-2 w-1/2 m-auto dark:bg-slate-800"
                         style={{borderColor: `${todo.importance}`}}>
                         <div className="flex justify-between ">
-                          <p className="text-lg font-medium break-all max-w-2/3">{todo.task}</p>
+                          <p className="text-lg font-medium break-all max-w-2/3 dark:text-white" >{todo.task}</p>
                           <button
-                            className="bg-red-500 text-white p-4 rounded-xl font-bold hover:bg-red-400 h-16 w-20 self-center"
+                            className="bg-red-500 text-white p-4 rounded-xl font-bold hover:bg-red-400 h-16 w-20 self-center "
                             onClick={() => deleteTodo(todo.id)}> 
                             Delete </button>
                         </div>
@@ -73,8 +76,8 @@ const App: React.FC = () => {
                     ))
                 }
 
-            </ul>
-        </div>
+      </ul>
+    </div>
   )}
 
   export default App
